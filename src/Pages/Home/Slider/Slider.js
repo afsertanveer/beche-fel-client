@@ -8,10 +8,10 @@ import img6 from "../../../assets/slider/6.jpg";
 const Slider = () => {
   return (
     <div className="text-center mt-20">
-      <h2 className="text-3xl font-bold text-secondary">
+      <h2 className="text-3xl font-bold text-info">
         Some of the phones Category displayed below
       </h2>
-      <div className="carousel w-full mt-3 mx-auto bg-slate-700 lg:w-1/2">
+      <div className="carousel w-full mt-3 mx-auto bg-white lg:w-1/2">
         <div id="slide1" className="carousel-item relative w-full">
           <img src={img1} alt="slider img" className="w-5/6 mx-auto my-6" />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
