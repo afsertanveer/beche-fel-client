@@ -7,7 +7,7 @@ import img5 from "../../../assets/slider/5.jpg";
 import img6 from "../../../assets/slider/6.jpg";
 const Slider = () => {
   return (
-    <div className="text-center mt-20">
+    <section className="text-center mt-20">
       <h2 className="text-3xl font-bold text-info">
         Some of the phones Category displayed below
       </h2>
@@ -79,7 +79,7 @@ const Slider = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
