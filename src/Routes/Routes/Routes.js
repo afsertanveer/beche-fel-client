@@ -1,3 +1,5 @@
+import DashboardLayout from "../../Layouts/DashboardLayOut";
+import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Login from "../../Pages/LoginAndRegister/Login/Login";
 import Registration from "../../Pages/LoginAndRegister/Registration/Registration";
@@ -24,6 +26,16 @@ const router = createBrowserRouter([
         element: <Login></Login>,
       },
     ],
+  },
+  {
+    path:'/dashboard',
+    element:<DashboardLayout></DashboardLayout>,
+    children:[
+      {
+        path:'/dashboard',
+        element:<Dashboard></Dashboard>
+      }
+    ]
   },
   {
     path: "*",
