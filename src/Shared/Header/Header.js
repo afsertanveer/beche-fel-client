@@ -1,7 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { toast } from 'react-hot-toast';
+import { Link, useNavigate } from "react-router-dom";
 import logo from '../../assets/mini-images/logo.jpg';
+import { AuthContext } from './../../Context/AuthProvider';
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+    // const {role} = useRole(user?.email);
+    // let userRole;
+    // if(!role){
+    //   userRole='user';
+    // }
+    // else{
+    //   userRole= role;
+    // }
+  const navigate = useNavigate();
+  const handleLogOut=()=>{
+      logOut()
+      .then(()=>{
+        toast.success('Logged Out Successfully')
+        navigate('/')
+      })
+      .catch(error=>console.error(error.message));
+  }
   const menuItems = (
     <>
       <li>
@@ -19,11 +40,24 @@ const Header = () => {
           Blogs
         </Link>
       </li>
-      <li>
-        <Link to="/login" className="font-semibold">
-          Login
-        </Link>
-      </li>
+      {user ? (
+        <>
+          <li>
+            <Link to="/dashboard" className="font-semibold">
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <button onClick={handleLogOut} className="font-semibold">
+              Logout
+            </button>
+          </li>
+        </>
+      ) : (
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      )}
     </>
   );
   return (

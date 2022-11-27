@@ -8,19 +8,22 @@ const Categories = () => {
           Categories
         </h1>
         <div className="my-8 flex justify-center items-center">
-          <div className="grid gap-5 grid-cols-1 lg:grid-cols-3">
+          <div className="grid gap-5 grid-cols-3">
             <Link to="">
-              <button className="p-5 w-full btn btn-lg bg-secondary text-white font-semibold mr-3 lg:w-28 ">
+              <button 
+              className="p-5 w-full btn btn-lg bg-secondary text-white font-semibold mr-3 lg:w-96 lg:h-24 lg:text-3xl  ">
                 IPhone
               </button>
             </Link>
             <Link to="">
-              <button className="p-5 w-full btn btn-lg bg-secondary text-white font-semibold mr-3 lg:w-28">
+              <button 
+              className="p-5 w-full btn btn-lg bg-secondary text-white font-semibold mr-3 lg:w-96 lg:h-24 lg:text-3xl ">
                 OnePlus
               </button>
             </Link>
             <Link to="">
-              <button className="p-5 w-full btn btn-lg bg-secondary text-white font-semibold mr-3 lg:w-28">
+              <button 
+              className="p-5 w-full btn btn-lg bg-secondary text-white font-semibold mr-3 lg:w-96 lg:h-24 lg:text-3xl ">
                 Redmi
               </button>
             </Link>
