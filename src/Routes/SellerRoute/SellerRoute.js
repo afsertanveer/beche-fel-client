@@ -14,7 +14,6 @@ const SellerRoute = ({ children }) => {
    } else {
      userRole = role;
    }
-   console.log('roleoroelreo ',userRole);
   if(loading){
     return <Loader></Loader>
   }

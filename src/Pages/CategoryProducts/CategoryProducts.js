@@ -1,17 +1,60 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
+import useRole from './../../hooks/useRole';
+import useTitle from './../../hooks/useTitle';
+import BookPhone from './../BookPhone/BookPhone';
 import CategoryProduct from './CategoryProduct';
 
 const CategoryProducts = () => {
+    const {user} = useContext(AuthContext);
     const phones = useLoaderData();
-    console.log(phones);
+    const [modalValues,setModalValues] = useState('');
+    const brand = phones.map(ph=> ph.brand);
+   
+      useTitle(brand[0]? brand[0] : 'Category');
+   
+     const { role } = useRole(user?.email);
+     let userRole;
+     if (!role && user) {
+       userRole = "user";
+     } else {
+       userRole = role;
+     }
+    const setModalValue = id =>{
+      if(user){
+         if ( userRole !== "user") {
+           toast.error("This account not for booking");
+           setModalValues("");
+         } else {
+           const value = phones.find((phone) => phone._id === id);
+           setModalValues(value);
+         }
+      }
+      else{
+        toast.error('Register/Login to book')
+      } 
+     
+    }
     return (
       <div>
         <div className="mt-5 grid gap-4 p-4 grid-cols-1  lg:grid-cols-2">
           {phones.map((mobile) => (
-            <CategoryProduct key={mobile._id} mobile={mobile}></CategoryProduct>
+            <CategoryProduct
+              key={mobile._id}
+              setModalValue={setModalValue}
+              mobile={mobile}
+            ></CategoryProduct>
           ))}
         </div>
+
+        {modalValues && (
+          <BookPhone
+            modalValues={modalValues}
+            setModalValues={setModalValues}
+          ></BookPhone>
+        )}
       </div>
     );
 };

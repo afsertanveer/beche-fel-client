@@ -1,10 +1,6 @@
-import React, { useContext } from 'react';
-import { toast } from 'react-hot-toast';
-import { AuthContext } from '../../Context/AuthProvider';
-import useRole from '../../hooks/useRole';
-const CategoryProduct = ({ mobile }) => {
-    const {user} = useContext(AuthContext)
-    const {
+import React from 'react';
+const CategoryProduct = ({ mobile, setModalValue }) => {
+  const {
     _id,
     photoURL,
     brand,
@@ -15,21 +11,12 @@ const CategoryProduct = ({ mobile }) => {
     purchasedYear,
     location,
     phone,
+    booked
   } = mobile;
 
-  const {role} = useRole(user?.email);
-  let userRole;
-  if(!role){
-    userRole='user'
-  }
-  else{
-    userRole = role;
-  }
-  const handeBookButton = id =>{
-        if(userRole!=='user'){
-           return toast.error('This account cannot book item');
-        }
-  }
+ if(booked){
+  return;
+ }
   return (
     <div className="card px-2 bg-base-100 shadow-xl">
       <div className="flex flex-col justify-center items-center lg:flex-row md:flex-row">
@@ -54,7 +41,13 @@ const CategoryProduct = ({ mobile }) => {
         </div>
       </div>
       <div className="card-actions justify-center my-4">
-        <button onClick={()=>handeBookButton(_id)} className="btn w-28 btn-success ">Book Now</button>
+        <label
+          onClick={() => setModalValue(_id)}
+          htmlFor="booking-modal"
+          className="btn w-28 btn-success "
+        >
+          Book Now
+        </label>
       </div>
     </div>
   );

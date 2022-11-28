@@ -91,6 +91,7 @@ const AddProduct = () => {
                 <span className="label-text">Brand</span>
               </label>
               <select
+                defaultValue='Iphone'
                 className="select select-bordered w-full max-w-xs"
                 {...register("brand")}
               >

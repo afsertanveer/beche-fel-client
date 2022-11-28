@@ -40,6 +40,18 @@ const Header = () => {
               Dashboard
             </Link>
           </li>
+          {user.displayName && (
+            <>
+              <li className="ml-3 font-semibold lg:mt-7">
+                {user?.displayName}
+              </li>
+            </>
+          )}
+          {user.photoURL && (
+            <li>
+              <img src={user.photoURL} className="w-24 h-20" alt=""></img>
+            </li>
+          )}
           <li>
             <button onClick={handleLogOut} className="font-semibold">
               Logout

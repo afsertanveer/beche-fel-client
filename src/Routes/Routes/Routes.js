@@ -1,6 +1,7 @@
 import DashboardLayout from "../../Layouts/DashboardLayOut";
 import AllProducts from "../../Pages/AllProducts.js/AllProducts";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
+import MyOrders from "../../Pages/Dashboard/BuyerDashBoard/MyOrders/MyOrders";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyProducts from "../../Pages/Dashboard/SellerDashBoard/MyProducts/MyProducts";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
@@ -8,6 +9,7 @@ import Login from "../../Pages/LoginAndRegister/Login/Login";
 import Registration from "../../Pages/LoginAndRegister/Registration/Registration";
 import SellerRoute from "../SellerRoute/SellerRoute";
 import AddProduct from './../../Pages/Dashboard/SellerDashBoard/AddProduct/AddProduct';
+import BuyerRoute from './../BuyerRoute/BuyerRoute';
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../Layouts/Main");
@@ -65,6 +67,12 @@ const router = createBrowserRouter([
             <MyProducts></MyProducts>
           </SellerRoute>
         ),
+      },
+      {
+        path: "/dashboard/my-orders",
+        element: <BuyerRoute>
+          <MyOrders></MyOrders>
+        </BuyerRoute>,
       },
     ],
   },

@@ -9,7 +9,7 @@ const Slider = () => {
   return (
     <section className="text-center mt-20">
       <h2 className="text-3xl font-bold text-info">
-        Some of the phones Category displayed below
+        Some of the phones from Category displayed below
       </h2>
       <div className="carousel w-full mt-3 mx-auto bg-white lg:w-1/2">
         <div id="slide1" className="carousel-item relative w-full">
