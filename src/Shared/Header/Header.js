@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { toast } from 'react-hot-toast';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from '../../assets/mini-images/logo.jpg';
 import { AuthContext } from './../../Context/AuthProvider';
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-
+  const location = useLocation();
     
   const navigate = useNavigate();
   const handleLogOut=()=>{
@@ -24,7 +24,7 @@ const Header = () => {
         </Link>
       </li>
       <li>
-        <Link to="/appointment" className="font-semibold">
+        <Link to="/all-products" className="font-semibold">
           All Products
         </Link>
       </li>
@@ -48,7 +48,9 @@ const Header = () => {
         </>
       ) : (
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/login" className="font-semibold">
+            Login
+          </Link>
         </li>
       )}
     </>
@@ -87,26 +89,28 @@ const Header = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
-      <label
-        htmlFor="dashboard-drawer"
-        tabIndex={2}
-        className="btn btn-ghost lg:hidden"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+      {location.pathname.includes("dashboard") && (
+        <label
+          htmlFor="dashboard-drawer"
+          tabIndex={2}
+          className="btn btn-ghost lg:hidden"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h8m-8 6h16"
-          />
-        </svg>
-      </label>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h8m-8 6h16"
+            />
+          </svg>
+        </label>
+      )}
     </div>
   );
 };

@@ -6,12 +6,13 @@ import useRole from './../hooks/useRole';
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
-    const { role } = useRole(user?.email);
+    const {role} =useRole(user?.email);
     let userRole;
-    if (!role) {
-    userRole = "user";
-    } else {
-    userRole = role;
+    if(!role){
+      userRole='user';
+    }
+    else{
+      userRole=role;
     }
   return (
     <div>
