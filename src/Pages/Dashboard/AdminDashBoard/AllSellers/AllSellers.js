@@ -32,14 +32,14 @@ const AllSellers = () => {
         })
     }
       const handleDelete = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`http://localhost:5000/users/${id}`, {
           method: "DELETE",
           headers: {},
         })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
-              toast.success("Product is Deleted");
+              toast.success("User is Deleted");
               refetch();
             }
           });
