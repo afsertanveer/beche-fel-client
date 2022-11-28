@@ -37,17 +37,20 @@ const MyProduct = ({ mobile, refetch }) => {
       });
   };
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
-      method: "DELETE",
-      headers: {},
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          toast.success("Product is Deleted");
-          refetch();
-        }
-      });
+    const proceed = window.confirm("Are you sure? You want to Delete");
+    if(proceed){
+      fetch(`http://localhost:5000/products/${id}`, {
+        method: "DELETE",
+        headers: {},
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            toast.success("Product is Deleted");
+            refetch();
+          }
+        });
+    }
   };
   return (
     <div className="card px-2 bg-base-100 shadow-xl">
@@ -80,7 +83,7 @@ const MyProduct = ({ mobile, refetch }) => {
         </div>
       </div>
       <div className="card-actions justify-end my-4">
-        {!isAdvertised && (
+        {!isAdvertised && !isSold && (
           <label
             onClick={() => handleAdvertise(_id)}
             className="btn w-28 btn-outline "

@@ -15,17 +15,22 @@ const AllBuyers = () => {
     },
   });
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
-      method: "DELETE",
-      headers: {},
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          toast.success("Buyer is Deleted");
-          refetch();
-        }
-      });
+    const proceed = window.confirm(
+      "Are you sure? You want to Delete"
+    );
+    if(proceed){
+        fetch(`http://localhost:5000/users/${id}`, {
+          method: "DELETE",
+          headers: {},
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              toast.success("Buyer is Deleted");
+              refetch();
+            }
+          });
+    }
   };
   return (
     <div>
