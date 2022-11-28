@@ -2,8 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../Context/AuthProvider';
+import useTitle from './../../../../hooks/useTitle';
 
 const MyOrders = () => {
+    useTitle('My Orders');
     const {user} = useContext(AuthContext);
     const email = user?.email;
      const { data: booked = [] } = useQuery({
@@ -24,6 +26,8 @@ const MyOrders = () => {
                 <th></th>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Phone</th>
+                <th>Location</th>
                 <th>Date</th>
                 <th>Payment</th>
               </tr>
@@ -35,6 +39,8 @@ const MyOrders = () => {
                     <th>{_idx + 1}</th>
                     <th>{booking.model}</th>
                     <td>{booking.askingPrice}</td>
+                    <td>{booking.phone}</td>
+                    <td>{booking.location}</td>
                     <td>{booking.curDate}</td>
                     <td>
                       {booking.askingPrice && !booking.paid && (

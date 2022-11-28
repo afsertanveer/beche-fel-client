@@ -27,19 +27,25 @@ const AllProducts = () => {
          } else {
            userRole = role;
          }
-         const setModalValue = (id) => {
-           if (user) {
-             if (userRole !== "user") {
-               toast.error("This account not for booking");
-               setModalValues("");
+           const setModalValue = (id, booked) => {
+             let value = "";
+             if (booked) {
+               toast.error("This item is already booked");
              } else {
-               const value = phones.find((phone) => phone._id === id);
-               setModalValues(value);
+               value = phones.find((phone) => phone._id === id);
+               console.log(value);
              }
-           } else {
-             toast.error("Register/Login to book");
-           }
-         };
+             if (user) {
+               if (userRole !== "user") {
+                 toast.error("This account not for booking");
+                 setModalValues("");
+               } else {
+                 setModalValues(value);
+               }
+             } else {
+               toast.error("Register/Login to book");
+             }
+           };
   return (
     <div>
       <h2 className="text-4xl font-extrabold text-center">ALL PRODUCTS</h2>

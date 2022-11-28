@@ -16,7 +16,7 @@ const MyProducts = () => {
        });
     return (
       <div>
-        <h2>My Products</h2>
+        <h2 className='text-center text-3xl text-secondary font-extrabold my-10'>My Products</h2>
         <div className="mt-5 grid gap-4 p-4 grid-cols-1  lg:grid-cols-2">
           {phones.map((mobile) => (
             <MyProduct key={mobile._id} mobile={mobile}></MyProduct>

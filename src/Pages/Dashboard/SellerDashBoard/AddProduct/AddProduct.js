@@ -4,9 +4,11 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../Context/AuthProvider';
+import useTitle from './../../../../hooks/useTitle';
 
 
 const AddProduct = () => {
+  useTitle('Add Product');
     const {user} = useContext(AuthContext)
     const {
       register,
@@ -45,7 +47,9 @@ const AddProduct = () => {
                purchasedYear:data.purchasedYear,
                phone: data.phone,
                location: data.location,
-               addedBy:user?.email
+               addedBy:user?.email,
+               sellerName:user?.displayName,
+               isVerified:false
              };
 
              //save phone information to the database

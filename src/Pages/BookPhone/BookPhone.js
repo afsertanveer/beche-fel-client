@@ -14,31 +14,37 @@ const BookPhone = ({ modalValues, setModalValues }) => {
   }
   const curDate=getDate(new Date());
   const handleBooking = (event) => {
+    
     event.preventDefault();
     const productId= _id;
     const email = user?.email;
-    const booked = {
+    const form = event.target;
+    const phone =form.phone.value;
+    const location = form.location.value;
+    const bookedPhone = {
       model,
       productId,
       askingPrice,
       email,
+      phone,
+      location,
       curDate
     };
-    fetch("http://localhost:5000/bookedPhone",{
-      method:'POST',
-      headers:{
-        'content-type':'application/json'
+    fetch("http://localhost:5000/bookedPhone", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
       },
-      body:JSON.stringify(booked)
+      body: JSON.stringify(bookedPhone),
     })
-    .then(res=>res.json())
-    .then(data=>{
-      if(data.acknowledged){
-        toast.success('Product Booked Confirmed');
-        setModalValues('');
-        navigate("/dashboard/my-orders");
-      }
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Product Booked Confirmed");
+          setModalValues("");
+          navigate("/dashboard/my-orders");
+        }
+      });
   };
   return (
     <>
@@ -77,6 +83,20 @@ const BookPhone = ({ modalValues, setModalValues }) => {
               type="text"
               name="price"
               defaultValue={askingPrice}
+              className="input input-bordered w-full"
+              required
+            />
+            <input
+              type="text"
+              name="phone"
+              placeholder='your phone number'
+              className="input input-bordered w-full"
+              required
+            />
+            <input
+              type="text"
+              name="location"
+              placeholder='your location'
               className="input input-bordered w-full"
               required
             />

@@ -22,21 +22,25 @@ const CategoryProducts = () => {
      } else {
        userRole = role;
      }
-    const setModalValue = id =>{
-      if(user){
-         if ( userRole !== "user") {
+     const setModalValue = (id, booked) => {
+       let value = "";
+       if (booked) {
+         toast.error("This item is already booked");
+       } else {
+         value = phones.find((phone) => phone._id === id);
+         console.log(value);
+       }
+       if (user) {
+         if (userRole !== "user") {
            toast.error("This account not for booking");
            setModalValues("");
          } else {
-           const value = phones.find((phone) => phone._id === id);
            setModalValues(value);
          }
-      }
-      else{
-        toast.error('Register/Login to book')
-      } 
-     
-    }
+       } else {
+         toast.error("Register/Login to book");
+       }
+     };
     return (
       <div>
         <div className="mt-5 grid gap-4 p-4 grid-cols-1  lg:grid-cols-2">

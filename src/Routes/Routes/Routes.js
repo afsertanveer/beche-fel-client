@@ -1,12 +1,14 @@
 import DashboardLayout from "../../Layouts/DashboardLayOut";
 import AllProducts from "../../Pages/AllProducts.js/AllProducts";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
+import AllBuyers from "../../Pages/Dashboard/AdminDashBoard/AllBuyers/AllBuyers";
 import MyOrders from "../../Pages/Dashboard/BuyerDashBoard/MyOrders/MyOrders";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyProducts from "../../Pages/Dashboard/SellerDashBoard/MyProducts/MyProducts";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Login from "../../Pages/LoginAndRegister/Login/Login";
 import Registration from "../../Pages/LoginAndRegister/Registration/Registration";
+import AdminRoute from "../AdminRoute/AdminRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
 import AddProduct from './../../Pages/Dashboard/SellerDashBoard/AddProduct/AddProduct';
 import BuyerRoute from './../BuyerRoute/BuyerRoute';
@@ -70,9 +72,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/my-orders",
-        element: <BuyerRoute>
-          <MyOrders></MyOrders>
-        </BuyerRoute>,
+        element: (
+          <BuyerRoute>
+            <MyOrders></MyOrders>
+          </BuyerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/buyers",
+        element: (
+          <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
+        ),
       },
     ],
   },

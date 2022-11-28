@@ -1,9 +1,13 @@
 import React from 'react';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import useTitle from './../../../../hooks/useTitle';
 
 const MyProduct = ({mobile}) => {
-        
+        useTitle('My Products');
         const {
           photoURL,
+          _id,
           brand,
           model,
           conditon,
@@ -12,7 +16,26 @@ const MyProduct = ({mobile}) => {
           purchasedYear,
           location,
           phone,
+          isAdvertised
         } = mobile;
+        const navigate = useNavigate();
+      const handleAdvertise = id =>{
+        fetch(`http://localhost:5000/product/${id}`,{
+          method:'PUT',
+          headers:{
+            'content-type':'application/json'
+          },
+          body:JSON.stringify({})
+        })
+        .then(res=>res.json())
+        .then(data=>{
+          if(data.acknowledged){
+            toast.success('Successfully advertised to the home page')
+            navigate('/');
+          }
+        })
+
+      }
     return (
       <div className="card px-2 bg-base-100 shadow-xl">
         <div className="flex flex-col justify-center items-center lg:flex-row md:flex-row">
@@ -37,7 +60,15 @@ const MyProduct = ({mobile}) => {
           </div>
         </div>
         <div className="card-actions justify-end my-4">
-          <button className="btn w-28 btn-outline ">Advertise</button>
+          {!isAdvertised && (
+            <label
+              onClick={() => handleAdvertise(_id)}
+              className="btn w-28 btn-outline "
+            >
+              Advertise
+            </label>
+          )}
+
           <button className="btn w-28 rounded-lg btn-error text-white">
             Delete
           </button>
