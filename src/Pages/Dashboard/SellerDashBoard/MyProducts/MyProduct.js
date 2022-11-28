@@ -16,7 +16,8 @@ const MyProduct = ({mobile}) => {
           purchasedYear,
           location,
           phone,
-          isAdvertised
+          isAdvertised,
+          isSold,
         } = mobile;
         const navigate = useNavigate();
       const handleAdvertise = id =>{
@@ -57,6 +58,15 @@ const MyProduct = ({mobile}) => {
                 <p>Condition: {conditon}</p>
               </div>
             </div>
+            {isSold ? (
+              <h2 className="text-3xl font-semibold text-error">
+                Status: Sold
+              </h2>
+            ) : (
+              <h2 className="text-3xl font-semibold text-success">
+                Status: Available
+              </h2>
+            )}
           </div>
         </div>
         <div className="card-actions justify-end my-4">

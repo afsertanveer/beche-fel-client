@@ -53,7 +53,7 @@ const HomeAdvertise = () => {
             </h1>
           </div>
         )}
-        <div>
+        <div className='grid gap-4 grid-cols-1 lg:grid-cols-2'>
           {count.map((mobile) => (
             <CategoryProduct
               key={mobile._id}
