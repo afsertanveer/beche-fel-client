@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { toast } from 'react-hot-toast';
 import useTitle from './../../../../hooks/useTitle';
 
 const AllBuyers = () => {
   useTitle("All Buyers");
 
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/users?role=user`);
@@ -13,7 +14,19 @@ const AllBuyers = () => {
       return data;
     },
   });
-
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/users/${id}`, {
+      method: "DELETE",
+      headers: {},
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success("Buyer is Deleted");
+          refetch();
+        }
+      });
+  };
   return (
     <div>
       <h2 className="text-3xl text-center text-secondary font-extrabold">
@@ -27,6 +40,7 @@ const AllBuyers = () => {
               <th>Name</th>
               <th>Photo</th>
               <th>Email</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -43,6 +57,14 @@ const AllBuyers = () => {
                     </div>
                   </td>
                   <td>{u.email}</td>
+                  <td>
+                    <button
+                      onClick={() => handleDelete(u._id)}
+                      className="btn btn-error"
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
           </tbody>

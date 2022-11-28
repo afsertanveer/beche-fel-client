@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
@@ -9,15 +9,13 @@ import CategoryProduct from './../CategoryProducts/CategoryProduct';
 
 const AllProducts = () => {
   useTitle('All Products')
+  const [phones,setPhones] = useState([]);
+   axios.get(`http://localhost:5000/products/`)
+   .then((res) => {
+     setPhones(res.data);
+   });
   const {user} = useContext(AuthContext)
-  const { data: phones = [] } = useQuery({
-    queryKey: ["phone"],
-    queryFn: async () => {
-      const res = await fetch("http://localhost:5000/products/");
-      const data = await res.json();
-      return data;
-    },
-  });
+
     const [modalValues, setModalValues] = useState("");
 
          const { role } = useRole(user?.email);
@@ -32,7 +30,7 @@ const AllProducts = () => {
              if (booked) {
                toast.error("This item is already booked");
              } else {
-               value = phones.find((phone) => phone._id === id);
+               value = phones?.find((phone) => phone._id === id);
                console.log(value);
              }
              if (user) {
@@ -50,7 +48,7 @@ const AllProducts = () => {
     <div>
       <h2 className="text-4xl font-extrabold text-center">ALL PRODUCTS</h2>
       <div className="mt-5 grid gap-4 p-4 grid-cols-1 lg:grid-cols-2">
-        {phones.map((mobile) => (
+        {phones?.map((mobile) => (
           <CategoryProduct
             key={mobile._id}
             setModalValue={setModalValue}

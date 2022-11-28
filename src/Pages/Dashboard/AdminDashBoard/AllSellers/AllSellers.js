@@ -39,7 +39,7 @@ const AllSellers = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
-              toast.success("User is Deleted");
+              toast.success("Seller is Deleted");
               refetch();
             }
           });
