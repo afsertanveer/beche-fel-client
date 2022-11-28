@@ -44,7 +44,7 @@ const Registration = () => {
               .then(()=>{})
               .catch(error=>console.log(error))
               //save user
-              fetch("http://localhost:5000/users", {
+              fetch("https://beche-fel-server.vercel.app/users", {
                 method: "POST",
                 headers: {
                   "content-type": "application/json",

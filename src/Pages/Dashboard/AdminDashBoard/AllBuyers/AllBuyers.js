@@ -9,7 +9,7 @@ const AllBuyers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users?role=user`);
+      const res = await fetch(`https://beche-fel-server.vercel.app/users?role=user`);
       const data = await res.json();
       return data;
     },
@@ -19,7 +19,7 @@ const AllBuyers = () => {
       "Are you sure? You want to Delete"
     );
     if(proceed){
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://beche-fel-server.vercel.app/users/${id}`, {
           method: "DELETE",
           headers: {},
         })

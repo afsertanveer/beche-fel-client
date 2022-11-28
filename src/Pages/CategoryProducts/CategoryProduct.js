@@ -26,7 +26,7 @@ const CategoryProduct = ({ mobile, setModalValue }) => {
  
 
    useEffect(() => {
-     fetch(`http://localhost:5000/users?email=${addedBy}`)
+     fetch(`https://beche-fel-server.vercel.app/users?email=${addedBy}`)
        .then((res) => res.json())
        .then((data) => {
         setCurUser(data);
@@ -42,7 +42,7 @@ const CategoryProduct = ({ mobile, setModalValue }) => {
     if(booked){
       toast.error('This item is already booked.You cannot report it');
     }else{
-      fetch(`http://localhost:5000/products/report/${id}`,{
+      fetch(`https://beche-fel-server.vercel.app/products/report/${id}`,{
         method:'PUT',
         headers:{
           'content-type':'application/json'

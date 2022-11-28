@@ -11,7 +11,7 @@ const MyOrders = () => {
      const { data: booked = [] } = useQuery({
        queryKey: ["booked"],
        queryFn: async () => {
-         const res = await fetch(`http://localhost:5000/bookedPhone?email=${email}`);
+         const res = await fetch(`https://beche-fel-server.vercel.app/bookedPhone?email=${email}`);
          const data = await res.json();
          return data;
        },

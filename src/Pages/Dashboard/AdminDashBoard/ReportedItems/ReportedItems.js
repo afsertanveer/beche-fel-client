@@ -9,13 +9,13 @@ const ReportedItems = () => {
   const { data: phones = [], refetch } = useQuery({
     queryKey: ["phones"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/products?isReported=true`);
+      const res = await fetch(`https://beche-fel-server.vercel.app/products?isReported=true`);
       const data = await res.json();
       return data;
     },
   });
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`https://beche-fel-server.vercel.app/products/${id}`, {
       method: "DELETE",
       headers: {
       

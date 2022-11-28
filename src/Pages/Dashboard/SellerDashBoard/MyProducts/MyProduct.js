@@ -21,7 +21,7 @@ const MyProduct = ({ mobile, refetch }) => {
   } = mobile;
   const navigate = useNavigate();
   const handleAdvertise = (id) => {
-    fetch(`http://localhost:5000/product/${id}`, {
+    fetch(`https://beche-fel-server.vercel.app/product/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -39,7 +39,7 @@ const MyProduct = ({ mobile, refetch }) => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure? You want to Delete");
     if(proceed){
-      fetch(`http://localhost:5000/products/${id}`, {
+      fetch(`https://beche-fel-server.vercel.app/products/${id}`, {
         method: "DELETE",
         headers: {},
       })

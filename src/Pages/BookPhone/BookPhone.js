@@ -30,7 +30,7 @@ const BookPhone = ({ modalValues, setModalValues }) => {
       location,
       curDate
     };
-    fetch("http://localhost:5000/bookedPhone", {
+    fetch("https://beche-fel-server.vercel.app/bookedPhone", {
       method: "POST",
       headers: {
         "content-type": "application/json",

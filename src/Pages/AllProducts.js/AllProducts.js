@@ -10,7 +10,7 @@ import CategoryProduct from './../CategoryProducts/CategoryProduct';
 const AllProducts = () => {
   useTitle('All Products')
   const [phones,setPhones] = useState([]);
-   axios.get(`http://localhost:5000/products/`)
+   axios.get(`https://beche-fel-server.vercel.app/products/`)
    .then((res) => {
      setPhones(res.data);
    });

@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       {
         path: "categories/:name",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.name}`),
+          fetch(`https://beche-fel-server.vercel.app/products/${params.name}`),
         element: <CategoryProducts></CategoryProducts>,
       },
       {
@@ -113,7 +113,7 @@ const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookedPhone/${params.id}`),
+          fetch(`https://beche-fel-server.vercel.app/bookedPhone/${params.id}`),
       },
     ],
   },

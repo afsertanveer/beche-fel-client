@@ -14,7 +14,7 @@ const CheckOutForm = ({ bookedPhone }) => {
   const price = askingPrice;
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://beche-fel-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +70,7 @@ const CheckOutForm = ({ bookedPhone }) => {
         bookingId: _id,
         productId:productId
       };
-      fetch("http://localhost:5000/payments", {
+      fetch("https://beche-fel-server.vercel.app/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",
