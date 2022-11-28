@@ -4,6 +4,7 @@ import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
 import AllSellers from "../../Pages/Dashboard/AdminDashBoard/AllSellers/AllSellers";
 import ReportedItems from "../../Pages/Dashboard/AdminDashBoard/ReportedItems/ReportedItems";
 import MyOrders from "../../Pages/Dashboard/BuyerDashBoard/MyOrders/MyOrders";
+import Payment from "../../Pages/Dashboard/BuyerDashBoard/Payment/Payment";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyProducts from "../../Pages/Dashboard/SellerDashBoard/MyProducts/MyProducts";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
@@ -103,6 +104,12 @@ const router = createBrowserRouter([
             <ReportedItems></ReportedItems>
           </AdminRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookedPhone/${params.id}`),
       },
     ],
   },

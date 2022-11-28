@@ -14,6 +14,7 @@ const AllProducts = () => {
    .then((res) => {
      setPhones(res.data);
    });
+   const mobiles =phones?.filter(ph=>!ph.isSold);
   const {user} = useContext(AuthContext)
 
     const [modalValues, setModalValues] = useState("");
@@ -48,7 +49,7 @@ const AllProducts = () => {
     <div>
       <h2 className="text-4xl font-extrabold text-center">ALL PRODUCTS</h2>
       <div className="mt-5 grid gap-4 p-4 grid-cols-1 lg:grid-cols-2">
-        {phones?.map((mobile) => (
+        {mobiles?.map((mobile) => (
           <CategoryProduct
             key={mobile._id}
             setModalValue={setModalValue}

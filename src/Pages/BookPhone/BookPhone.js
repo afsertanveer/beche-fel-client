@@ -62,7 +62,6 @@ const BookPhone = ({ modalValues, setModalValues }) => {
             onSubmit={handleBooking}
             className="grid grid-cols-1 gap-3 mt-10"
           >
-            
             <label htmlFor="">Name</label>
             <input
               type="text"
@@ -83,20 +82,21 @@ const BookPhone = ({ modalValues, setModalValues }) => {
               type="text"
               name="price"
               defaultValue={askingPrice}
+              disabled
               className="input input-bordered w-full"
               required
             />
             <input
               type="text"
               name="phone"
-              placeholder='your phone number'
+              placeholder="your phone number"
               className="input input-bordered w-full"
               required
             />
             <input
               type="text"
               name="location"
-              placeholder='your location'
+              placeholder="your location"
               className="input input-bordered w-full"
               required
             />

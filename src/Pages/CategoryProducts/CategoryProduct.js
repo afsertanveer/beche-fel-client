@@ -3,7 +3,6 @@ import toast from 'react-hot-toast';
 import { FaUserCheck } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
-import useRole from './../../hooks/useRole';
 const CategoryProduct = ({ mobile, setModalValue }) => {
   const {user} = useContext(AuthContext)
   const [curUser,setCurUser] = useState('');
@@ -22,18 +21,10 @@ const CategoryProduct = ({ mobile, setModalValue }) => {
     booked,
     sellerName,
     addedBy,
-    isReported,
+    isReported
   } = mobile;
-  const {role} = useRole(user?.email);
-  let userRole;
-  if(!role && user){
-    userRole='true';
-  }else if(role==='user'){
-    userRole='true';
-  }else{
-    userRole='false';
-  }
-  console.log(userRole);
+ 
+
    useEffect(() => {
      fetch(`http://localhost:5000/users?email=${addedBy}`)
        .then((res) => res.json())
@@ -97,8 +88,8 @@ const CategoryProduct = ({ mobile, setModalValue }) => {
            </div>
          </div>
        </div>
-       <div className='flex justify-center items-center my-10'>
-         <div className='mr-4'>
+       <div className="flex justify-center items-center my-10">
+         <div className="mr-4">
            <label
              onClick={() => setModalValue(_id, booked)}
              htmlFor="booking-modal"

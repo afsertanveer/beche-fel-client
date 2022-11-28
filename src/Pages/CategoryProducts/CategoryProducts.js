@@ -10,6 +10,7 @@ import CategoryProduct from './CategoryProduct';
 const CategoryProducts = () => {
     const {user} = useContext(AuthContext);
     const phones = useLoaderData();
+    const mobiles = phones?.filter((ph) => !ph.isSold);
     const [modalValues,setModalValues] = useState('');
     const brand = phones.map(ph=> ph.brand);
    
@@ -44,7 +45,7 @@ const CategoryProducts = () => {
     return (
       <div>
         <div className="mt-5 grid gap-4 p-4 grid-cols-1  lg:grid-cols-2">
-          {phones.map((mobile) => (
+          {mobiles?.map((mobile) => (
             <CategoryProduct
               key={mobile._id}
               setModalValue={setModalValue}
