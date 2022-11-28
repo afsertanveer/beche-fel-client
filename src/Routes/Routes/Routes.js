@@ -1,5 +1,6 @@
 import DashboardLayout from "../../Layouts/DashboardLayOut";
 import AllProducts from "../../Pages/AllProducts.js/AllProducts";
+import Blogs from '../../Pages/Blogs/Blogs';
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
 import AllSellers from "../../Pages/Dashboard/AdminDashBoard/AllSellers/AllSellers";
 import ReportedItems from "../../Pages/Dashboard/AdminDashBoard/ReportedItems/ReportedItems";
@@ -15,7 +16,6 @@ import SellerRoute from "../SellerRoute/SellerRoute";
 import AllBuyers from './../../Pages/Dashboard/AdminDashBoard/AllBuyers/AllBuyers';
 import AddProduct from './../../Pages/Dashboard/SellerDashBoard/AddProduct/AddProduct';
 import BuyerRoute from './../BuyerRoute/BuyerRoute';
-
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../Layouts/Main");
 const { default: Home } = require("../../Pages/Home/Home/Home");
@@ -46,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/all-products",
         element: <AllProducts></AllProducts>,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>,
       },
     ],
   },
