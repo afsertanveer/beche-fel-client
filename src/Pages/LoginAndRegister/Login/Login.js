@@ -8,7 +8,8 @@ import useTitle from '../../../hooks/useTitle';
 import Loader from '../../../Loader/Loader';
 const Login = () => {
          useTitle('login')
-         const { loading, logIn, googleLogin } = useContext(AuthContext);
+         const { loading,setLoading, logIn, googleLogin } = useContext(AuthContext);
+         const [loginError,setloginError] = useState('');
           const navigate = useNavigate();
           const location = useLocation();
           const from = location.state?.from.pathname || "/";
@@ -17,19 +18,38 @@ const Login = () => {
            handleSubmit,
            formState: { errors },
          } = useForm();
-         const [logInError, setLogInError] = useState("");
          const handleLogin = (data) => {
            console.log(data);
            const email=data.email;
            const password= data.password;
            logIn(email,password)
            .then(result=>{
-            setLogInError('');
-            toast.success('Successfully Logged In');
-            navigate(from, { replace: true });
+            setloginError("");
+            const user = result?.user;
+            toast.success("Successfully Logged In");
+            const currentUser = {
+              email: user?.email,
+            };
+            fetch("https://beche-fel-server.vercel.app/jwt", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(currentUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+                localStorage.setItem("token", data.token);
+                navigate(from, { replace: true });
+              });
+            
+            
            })
            .catch(error=>{
-            setLogInError(error.message);
+            setloginError(error.message);
+            console.log(loginError);
+            setLoading(false);
            })
 
          };
@@ -37,9 +57,26 @@ const Login = () => {
           googleLogin()
           .then(result=>{
             result.user['role'] ='user';
+            const user = result?.user;
             console.log(result.user);
             toast.success('Google Login Successful');
-            navigate(from, { replace: true });
+            const currentUser = {
+              email: user?.email,
+            };
+            fetch("https://beche-fel-server.vercel.app/jwt", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(currentUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+                localStorage.setItem("token", data.token);
+                navigate(from, { replace: true });
+              });
+            
             
           })
           .catch(error=>console.error(error.message))
@@ -85,7 +122,7 @@ const Login = () => {
               value="Log In"
               type="submit"
             />
-            {logInError && <p className="text-error">{logInError}</p>}
+            {loginError && <p className="text-error">{loginError}</p>}
           </form>
           <p className='text-center mt-2'>
             New to BecheFel? Please
@@ -94,6 +131,9 @@ const Login = () => {
             </Link>
           </p>
           <div className="divider">Google Login</div>
+          {
+            loginError && <p className='text-error'>{loginError}</p>
+          }
           <button onClick={handleGoogleLogIn} className="flex items-center btn btn-info w-full">
             <FaGoogle className="text-white mr-2"> </FaGoogle>
             <span className="text-white">Google</span>

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useTitle from '../../../hooks/useTitle';
 import Loader from '../../../Loader/Loader';
 import { AuthContext } from './../../../Context/AuthProvider';
@@ -11,9 +11,11 @@ const Registration = () => {
      const {loading, createUser, updateUser } = useContext(AuthContext);
      const {register, handleSubmit,formState:{errors}}=useForm()
      const imageHostKey = "ebd4060c9b00b8b0232d789d6ffbf217";
+     const navigate =useNavigate();
+     const location = useLocation();
+     const from = location.state?.from.pathname || "/";
      const formData = new FormData();
      console.log(imageHostKey);
-     const navigate = useNavigate();
      const [signUpError, setSignUpError] = useState("");
     const handleSignUp = (data) =>{
         console.log(data);
@@ -44,6 +46,23 @@ const Registration = () => {
               .then(()=>{})
               .catch(error=>console.log(error))
               //save user
+              const user =result?.user;
+              const currentUser = {
+                email: user?.email,
+              };
+              fetch("https://beche-fel-server.vercel.app/jwt", {
+                method: "POST",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(currentUser),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  console.log(data);
+                  localStorage.setItem("token", data.token);
+                  navigate(from, { replace: true });
+                });
               fetch("https://beche-fel-server.vercel.app/users", {
                 method: "POST",
                 headers: {

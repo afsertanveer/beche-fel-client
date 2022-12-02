@@ -6,7 +6,6 @@ import useTitle from './../../../../hooks/useTitle';
 import CheckOutForm from './CheckOutForm';
 const stripePromise = loadStripe("pk_test_51M7pK3CsWan8tKr9iGT5lQWKjtwyvo4Snbi4dwFZiwjrgwJR4Rhu5AwADnTfz6qCwfmGx8rqlm1e8dn1ISVjyHpk00NXa4XF9t"
 );
-console.log(stripePromise);
 const Payment = () => {
   useTitle('Payment');
     const bookedPhone = useLoaderData();
