@@ -10,7 +10,7 @@ const Registration = () => {
     useTitle('Sign Up')
      const {loading, createUser, updateUser } = useContext(AuthContext);
      const {register, handleSubmit,formState:{errors}}=useForm()
-     const imageHostKey = "ebd4060c9b00b8b0232d789d6ffbf217";
+     const imageHostKey = process.env.REACT_APP_imgbb_key;
      const navigate =useNavigate();
      const location = useLocation();
      const from = location.state?.from.pathname || "/";
@@ -88,7 +88,7 @@ const Registration = () => {
         })
 
       }
-      if(loading){
+      if(loading && !signUpError){
         return <Loader></Loader>
       }
     return (

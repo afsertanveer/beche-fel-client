@@ -4,8 +4,7 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import useTitle from './../../../../hooks/useTitle';
 import CheckOutForm from './CheckOutForm';
-const stripePromise = loadStripe("pk_test_51M7pK3CsWan8tKr9iGT5lQWKjtwyvo4Snbi4dwFZiwjrgwJR4Rhu5AwADnTfz6qCwfmGx8rqlm1e8dn1ISVjyHpk00NXa4XF9t"
-);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 const Payment = () => {
   useTitle('Payment');
     const bookedPhone = useLoaderData();

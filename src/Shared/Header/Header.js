@@ -59,11 +59,18 @@ const Header = () => {
           </li>
         </>
       ) : (
-        <li>
-          <Link to="/login" className="font-semibold">
-            Login
-          </Link>
-        </li>
+        <>
+          <li>
+            <Link to="/login" className="font-semibold">
+              Login
+            </Link>
+          </li>
+          <li>
+            <Link to="/register" className="font-semibold">
+              <button className="btn-sm rounded-lg -ml-2 btn-secondary text-white">Sign Up</button>
+            </Link>
+          </li>
+        </>
       )}
     </>
   );

@@ -8,7 +8,7 @@ import useTitle from '../../../hooks/useTitle';
 import Loader from '../../../Loader/Loader';
 const Login = () => {
          useTitle('login')
-         const { loading,setLoading, logIn, googleLogin } = useContext(AuthContext);
+         const { loading, logIn, googleLogin } = useContext(AuthContext);
          const [loginError,setloginError] = useState('');
           const navigate = useNavigate();
           const location = useLocation();
@@ -49,7 +49,6 @@ const Login = () => {
            .catch(error=>{
             setloginError(error.message);
             console.log(loginError);
-            setLoading(false);
            })
 
          };
@@ -81,7 +80,7 @@ const Login = () => {
           })
           .catch(error=>console.error(error.message))
          }
-         if(loading){
+         if(loading && !loginError){
           return <Loader></Loader>
          }
     return (
